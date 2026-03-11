@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 13% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 13%;
+    --primary: 0 84% 47%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 13% 13%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 13% 13%;
+    --destructive: 0 84% 47%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 0 84% 47%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 220 20% 8%;
+    --foreground: 220 10% 95%;
+    --card: 220 20% 11%;
+    --card-foreground: 220 10% 95%;
+    --popover: 220 20% 11%;
+    --popover-foreground: 220 10% 95%;
+    --primary: 0 84% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 20% 16%;
+    --secondary-foreground: 220 10% 95%;
+    --muted: 220 20% 16%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 220 20% 16%;
+    --accent-foreground: 220 10% 95%;
+    --destructive: 0 84% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 0 84% 55%;
+  }
+
+  * { @apply border-border; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+}
+
+@layer components {
+  .gradient-hero {
+    background: linear-gradient(135deg, hsl(0, 0%, 99%) 0%, hsl(0, 20%, 97%) 50%, hsl(0, 30%, 95%) 100%);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(0, 84%, 47%) 0%, hsl(0, 72%, 38%) 100%);
+  }
+
+  .gradient-card {
+    background: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(0, 20%, 98%) 100%);
+  }
+
+  /* Pulsing emergency dot */
+  .pulse-emergency {
+    animation: pulseRed 2s infinite;
+  }
+
+  @keyframes pulseRed {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+    50%       { box-shadow: 0 0 0 12px rgba(220, 38, 38, 0); }
+  }
+
+  /* Scanline effect for QR preview */
+  .qr-scanline::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.8), transparent);
+    animation: scan 2s linear infinite;
+  }
+
+  @keyframes scan {
+    0%   { top: 0%; }
+    100% { top: 100%; }
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
